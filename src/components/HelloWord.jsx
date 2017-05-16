@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Button, Modal } from 'antd';
 
-import styles from './HelloWord.css';
+// import styles from './HelloWord.css';
 
 class HelloWord extends React.Component {
     constructor(props) {
@@ -10,13 +11,22 @@ class HelloWord extends React.Component {
             text: 'Hello Word1'
         }
     }
+    info() {
+      Modal.info({
+        title: 'Message',
+        content: (
+          <div>
+            <p>{ this.state.text }</p>
+          </div>
+        ),
+        onOk() {}
+      });
+    }
     render() {
         return (
-            <div>
-                <h1 className={styles.app}>
-                    {this.state.text}
-                </h1>
-            </div>
+          <div>
+            <Button type="primary" onClick={this.info.bind(this)} >Click me</Button>
+          </div>
         )
     }
 }
