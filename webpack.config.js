@@ -38,6 +38,10 @@ module.exports = {
         {
             test: /\.css$/,
             use: [ 'style-loader', 'css-loader?modules' ]
+        },
+        {
+            test: /\.hbs$/,
+            loader: "handlebars-loader"
         }]
     },
     resolve: {
@@ -52,6 +56,10 @@ module.exports = {
         publicPath: '/'
         // 和上文 output 的“publicPath”值保持一致
     },
+    externals: {
+      react: 'var React',
+      'react-dom': 'var ReactDOM'
+    },
     plugins: [
         new webpack.NamedModulesPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
@@ -61,7 +69,10 @@ module.exports = {
             return module.context && module.context.indexOf('node_modules') !== -1;
             }
         }),
-        new HtmlWebpackPlugin(), // html模板
+        new HtmlWebpackPlugin({
+          title: 'Custom template using Handlebars',
+          template: 'template/index.hbs'
+        }), // html模板
         new webpack.HotModuleReplacementPlugin() //增加：webpack热替换插件
     ],
     devtool: 'inline-source-map'
