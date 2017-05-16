@@ -1,6 +1,5 @@
 {
   "parser": "babel-eslint",
-  "extends": "@ali/eslint-config-ais/react",
   "env": {
     "browser": true,
     "node": true

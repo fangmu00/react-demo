@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const WebpackDevServer = require("webpack-dev-server");
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { resolve } = path;
 
 module.exports = {
@@ -20,12 +21,12 @@ module.exports = {
 
         './app/app.js'
         // 我们 app 的入口文件
-        
+
     ],
     output: {
         path: path.join(__dirname,'dist'),
         filename: '[name].js',
-        publicPath: '/',
+        publicPath: '/'
     },
     module: {
         rules: [
@@ -36,7 +37,7 @@ module.exports = {
         },
         {
             test: /\.css$/,
-            use: [ 'style-loader', 'css-loader?modules' ],
+            use: [ 'style-loader', 'css-loader?modules' ]
         }]
     },
     resolve: {
@@ -60,7 +61,8 @@ module.exports = {
             return module.context && module.context.indexOf('node_modules') !== -1;
             }
         }),
+        new HtmlWebpackPlugin(), // html模板
         new webpack.HotModuleReplacementPlugin() //增加：webpack热替换插件
     ],
-    devtool: 'inline-source-map',
-}; 
+    devtool: 'inline-source-map'
+};

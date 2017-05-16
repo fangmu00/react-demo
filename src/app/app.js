@@ -11,7 +11,7 @@ const render = (Component) => {
     <AppContainer>
       <Component/>
     </AppContainer>,
-    document.getElementById('App')
+    document.getElementsByTagName('body')[0]
   );
 };
 
