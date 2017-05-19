@@ -8,7 +8,7 @@ class HelloWord extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: 'Hello Word1'
+            text: 'Hello Word111'
         }
     }
     info() {

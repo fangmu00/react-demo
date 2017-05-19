@@ -1,10 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import { AppContainer } from 'react-hot-loader';
-// AppContainer 是一个 HMR 必须的包裹(wrapper)组件
-
-import HelloWord from '../components/HelloWord';
+import { AppContainer } from 'react-hot-loader';// AppContainer 是一个 HMR 必须的包裹(wrapper)组件
+import Router from '../components/Router'
 
 const render = (Component) => {
   ReactDOM.render(
@@ -15,4 +12,11 @@ const render = (Component) => {
   );
 };
 
-render(HelloWord);
+render(Router);
+
+// 模块热替换的 API
+if (module.hot) {
+  module.hot.accept('../components/Router', () => {
+    render(Router)
+  });
+}
