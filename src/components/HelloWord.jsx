@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Button, Modal } from 'antd';
 
 // import styles from './HelloWord.css';
