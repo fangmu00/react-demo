@@ -1,9 +1,10 @@
 import React from 'react';
 import { Button, Modal } from 'antd';
+import { render } from '../../app/utils'
 
 // import styles from './HelloWord.css';
 
-class HelloWord extends React.Component {
+class Test extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -24,10 +25,10 @@ class HelloWord extends React.Component {
     render() {
         return (
           <div>
-            <Button type="primary" onClick={this.info.bind(this)} >Click1 me</Button>
+            <Button type="primary" onClick={this.info.bind(this)} >Click me</Button>
           </div>
         )
     }
 }
 
-export default HelloWord;
+render(Test, 'App2');

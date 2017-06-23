@@ -1,13 +1,14 @@
-const webpack = require('webpack');
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { resolve } = path;
-
+const plugins = require('./plugins');
+let newEntries = require('./entry');
+let entry = {
+  main: './app/app.js'
+};
+entry = Object.assign({}, entry, newEntries);
 module.exports = {
     context: resolve(__dirname, 'src'),
-    entry: [
-        './app/app.js'
-    ],
+    entry,
     output: {
         path: path.join(__dirname,'dist'),
         filename: '[name].js',
@@ -46,17 +47,5 @@ module.exports = {
       react: 'var React',
       'react-dom': 'var ReactDOM'
     },
-    plugins: [
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor',
-            minChunks: function (module) {
-            // 该配置假定你引入的 vendor 存在于 node_modules 目录中
-            return module.context && module.context.indexOf('node_modules') !== -1;
-            }
-        }),
-        new HtmlWebpackPlugin({
-          title: 'react-demo',
-          template: 'template/index.hbs'
-        }) // html模板
-    ]
+    plugins
 };

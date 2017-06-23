@@ -1,10 +1,33 @@
 const webpack = require('webpack');
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const plugins = require('./plugins');
 const { resolve } = path;
-const entry = require('./entry');
-
-module.exports = {
+let newEntries = require('./entry');
+// let entry = [
+//   'react-hot-loader/patch',
+//   // 开启 React 代码的模块热替换(HMR)
+//   'webpack-dev-server/client?http://localhost:8080',
+//   // 为 webpack-dev-server 的环境打包代码
+//   // 然后连接到指定服务器域名与端口
+//   'webpack/hot/only-dev-server',
+//   // 为热替换(HMR)打包好代码
+//   // only- 意味着只有成功更新运行代码才会执行热替换(HMR)
+//   './app/app.js'
+//   // 我们 app 的入口文件
+// ];
+let entry = {
+  main: [
+      'react-hot-loader/patch',
+      './app/app.js'
+    ]
+}
+entry = Object.assign({}, entry, newEntries);
+// if (Object.keys(newEntries).length) {
+//   Object.keys(newEntries).forEach((item) => {
+//     entry.push(newEntries[item])
+//   })
+// }
+const config ={
     context: resolve(__dirname, 'src'),
     entry,
     output: {
@@ -64,11 +87,11 @@ module.exports = {
             return module.context && module.context.indexOf('node_modules') !== -1;
             }
         }),
-        new HtmlWebpackPlugin({
-          title: 'react-demo',
-          template: 'template/index.hbs'
-        }), // html模板
         new webpack.HotModuleReplacementPlugin() //增加：webpack热替换插件
     ],
     devtool: 'cheap-module-source-map'
 };
+
+config.plugins.concat(plugins);
+
+module.exports = config;
