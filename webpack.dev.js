@@ -80,16 +80,10 @@ const config ={
     plugins: [
         new webpack.NamedModulesPlugin(),
         // 当模块热替换(HMR)时在浏览器控制台输出对用户更友好的模块名字信息
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor',
-            minChunks: function (module) {
-            // 该配置假定你引入的 vendor 存在于 node_modules 目录中
-            return module.context && module.context.indexOf('node_modules') !== -1;
-            }
-        }),
         new webpack.HotModuleReplacementPlugin() //增加：webpack热替换插件
     ],
-    devtool: 'cheap-module-source-map'
+    devtool: 'cheap-module-eval-source-map'
+    //devtool: 'source-map'
 };
 
 config.plugins.concat(plugins);

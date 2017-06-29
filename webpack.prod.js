@@ -43,6 +43,7 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx', '.json']
     },
+    devtool: 'cheap-module-source-map',
     externals: {
       react: 'var React',
       'react-dom': 'var ReactDOM'
