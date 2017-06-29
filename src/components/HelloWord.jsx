@@ -12,7 +12,7 @@ class HelloWord extends React.Component {
     }
     info() {
       Modal.info({
-        title: title,
+        title: 'Message',
         content: (
           <div>
             <p>{ this.state.text }</p>
