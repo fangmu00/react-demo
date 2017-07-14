@@ -6,7 +6,7 @@ import Router from '../components/Router'
 const render = (Component, Id) => {
   ReactDOM.render(
     <AppContainer>
-      <Component/>
+      <Component />
     </AppContainer>,
     document.getElementById(Id)
   );
