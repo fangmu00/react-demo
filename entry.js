@@ -5,7 +5,10 @@ const files = glob.sync(content+'/pages/*/index.js');
 const newEntries = {};
 files.forEach((item) => {
   const name = /.*\/pages\/(.*?)\/index\.js/.exec(item)[1];
-   newEntries[name] = item;
+  newEntries[name] = [
+    'react-hot-loader/patch',
+    item
+  ];
 })
 
 module.exports = newEntries;

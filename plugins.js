@@ -15,8 +15,8 @@ const plugins = [
   }),
   new HtmlWebpackPlugin({
     chunks: [
-        'main',
-        'vendor'
+      'main',
+      'vendor'
     ],
     title: 'react-demo',
     template: 'template/index.hbs'

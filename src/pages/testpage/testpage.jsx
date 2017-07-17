@@ -1,8 +1,7 @@
 import React from 'react';
 import { Button, Modal } from 'antd';
-import { render } from '../../app/utils'
 
-class Test extends React.Component {
+export default class Test extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,10 +22,9 @@ class Test extends React.Component {
   render() {
     return (
       <div>
-        <Button type="primary" onClick={this.info.bind(this)} >Click me</Button>
+        <Button type="primary" onClick={this.info.bind(this)} >{'Click1 me'}</Button>
       </div>
     )
   }
 }
 
-render(Test, 'App');
