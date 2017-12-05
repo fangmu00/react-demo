@@ -1,17 +1,25 @@
 import React from 'react'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter as Router,Route,Link } from 'react-router-dom'
+import Home from './Home';
+import Page1 from './Page1';
+import Page2 from './Page2';
 
-import HelloWord from '../components/HelloWord';
+const Basic = () => (
+  <Router>
+    <div>
+      <ul>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/page1">Page1</Link></li>
+        <li><Link to="/page2">Page2</Link></li>
+      </ul>
 
-export default React.createClass({
-  render() {
-    return (
-      <div>
-        <BrowserRouter>
-          <Route path="/" component={HelloWord} />
-        </BrowserRouter>
-      </div>
-    )
-  }
-})
+      <hr  />
 
+      <Route exact path="/" component={Home}  />
+      <Route path="/page1" component={Page1}  />
+      <Route path="/page2" component={Page2}  />
+    </div>
+  </Router>
+)
+
+export default Basic;

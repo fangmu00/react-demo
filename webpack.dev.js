@@ -1,60 +1,43 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin"); // 分离css
 const { resolve } = path;
 
 module.exports = {
-    context: resolve(__dirname, 'src'),
     entry: [
         'react-hot-loader/patch',
         // 开启 React 代码的模块热替换(HMR)
-
-        'webpack-dev-server/client?http://localhost:8080',
-        // 为 webpack-dev-server 的环境打包代码
-        // 然后连接到指定服务器域名与端口
-
-        'webpack/hot/only-dev-server',
-        // 为热替换(HMR)打包好代码
-        // only- 意味着只有成功更新运行代码才会执行热替换(HMR)
-
 
         './app/app.js'
         // 我们 app 的入口文件
 
     ],
-    output: {
-        path: path.join(__dirname,'dist'),
-        filename: '[name].js',
-        publicPath: '/'
-    },
     module: {
-        rules: [
-        {
-            test: /\.jsx?$/,
-            use: [ 'babel-loader' ],
-            exclude: /node_modules/
-        },
-        {
-            test: /\.css$/,
-            use: [ 'style-loader', 'css-loader' ]
-        },
-        {
-            test: /\.less$/,
-            use: [{
-                loader: "style-loader" // creates style nodes from JS strings
-            }, {
-                loader: "css-loader" // translates CSS into CommonJS
-            }, {
-                loader: "less-loader" // compiles Less to CSS
-            }]
-        },
-        {
-            test: /\.hbs$/,
-            loader: "handlebars-loader"
-        }]
-    },
-    resolve: {
-        extensions: ['.js', '.jsx', '.json']
+      rules: [
+      {
+          test: /\.(js|jsx)?$/,
+          use: [ 'babel-loader' ],
+          exclude: /node_modules/
+      },
+      {
+          test: /\.css$/,
+          use: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: 'css-loader'
+          })
+      },
+      {
+          test: /\.less$/,
+          use: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: ['css-loader', 'less-loader']
+          })
+      },
+      {
+          test: /\.hbs$/,
+          loader: "handlebars-loader"
+      }]
     },
     devServer: {
         hot: true,
@@ -64,10 +47,6 @@ module.exports = {
 
         publicPath: '/'
         // 和上文 output 的“publicPath”值保持一致
-    },
-    externals: {
-      react: 'var React',
-      'react-dom': 'var ReactDOM'
     },
     plugins: [
         new webpack.NamedModulesPlugin(),
@@ -83,7 +62,8 @@ module.exports = {
           title: 'react-demo',
           template: 'template/index.hbs'
         }), // html模板
-        new webpack.HotModuleReplacementPlugin() //增加：webpack热替换插件
+        new webpack.HotModuleReplacementPlugin(), //增加：webpack热替换插件
+        new ExtractTextPlugin('[name].css')
     ],
-    devtool: 'cheap-module-source-map'
+    devtool: 'inline-source-map'
 };
