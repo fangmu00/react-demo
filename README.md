@@ -1,2 +1,2 @@
 # react-demo
-webpack+react+react-router+ant 项目搭建模板
+webpack+react+react-router 项目搭建模板

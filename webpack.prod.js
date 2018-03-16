@@ -26,10 +26,6 @@ module.exports = {
             fallback: 'style-loader',
             use: ['css-loader', 'less-loader']
           })
-      },
-      {
-          test: /\.hbs$/,
-          loader: "handlebars-loader"
       }]
     },
     plugins: [
@@ -41,9 +37,8 @@ module.exports = {
             }
         }),
         new HtmlWebpackPlugin({
-          title: 'react-demo',
-          template: 'template/index.hbs'
+          template: 'template/index.html'
         }), // html模板
-        new ExtractTextPlugin('[name].css')
+        new ExtractTextPlugin('style.css')
     ]
 };

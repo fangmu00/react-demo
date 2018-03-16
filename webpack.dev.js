@@ -33,14 +33,11 @@ module.exports = {
             fallback: 'style-loader',
             use: ['css-loader', 'less-loader']
           })
-      },
-      {
-          test: /\.hbs$/,
-          loader: "handlebars-loader"
       }]
     },
     devServer: {
         hot: true,
+        host: '127.0.0.1',
         // 开启服务器的模块热替换（HMR）
         contentBase: resolve(__dirname, 'dist'),
         // 输出文件的路径
@@ -59,11 +56,10 @@ module.exports = {
             }
         }),
         new HtmlWebpackPlugin({
-          title: 'react-demo',
-          template: 'template/index.hbs'
+          template: 'template/index.html'
         }), // html模板
         new webpack.HotModuleReplacementPlugin(), //增加：webpack热替换插件
-        new ExtractTextPlugin('[name].css')
+        new ExtractTextPlugin('style.css')
     ],
     devtool: 'inline-source-map'
 };
