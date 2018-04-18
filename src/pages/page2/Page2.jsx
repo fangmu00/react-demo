@@ -16,7 +16,7 @@ const Page2 = ({ match }) => (
         </Link>
       </li>
       <li>
-        <Link to={`${match.url}/branch3`}>
+        <Link to={`${match.url}/branch3`} >
           { 'branch3' }
         </Link>
       </li>
